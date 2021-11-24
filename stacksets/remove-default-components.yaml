@@ -1,0 +1,38 @@
+Resources:
+  LambdaFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+              - lambda.amazonaws.com
+          Action:
+            - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: LambdaFunctionPolicy
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+              - s3:*
+            Resource: '*'
+  TestFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+        FunctionName: RemoveDefaultNetworkingComponents
+        Runtime: python3.9
+        Timeout: 30
+        Handler: testLambda.handler
+        Role: !GetAtt LambdaFunctionRole.Arn
+        Code:
+            S3Bucket: 'quant-sagemager'
+            S3Key: 'testLambda.zip'
+  KickoffLambda:
+    Type: Custom::CustomResource
+    Properties:
+      ServiceToken: !GetAtt 'TestFunction.Arn'
