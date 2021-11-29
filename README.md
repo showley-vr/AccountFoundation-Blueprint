@@ -4,6 +4,7 @@ This is the blueprint for a basic implementation of Vertical Relevance's Account
 TODO:
 CDK Script Deployment Project Structure -- Sean
   Acceptance Criteria: Deploy all of the files in the scps, stacksets, and supplementary_files directories to a S3 bucket for consumption.
+  
 **SCPs**
 Top-Level SCPs (2 SCP Policy Docs) -- Sean
   Acceptance Criteria: Deploy baseline scps (e.g. no root access, etc). This should consist of 2 scp policies due to size restrictions
