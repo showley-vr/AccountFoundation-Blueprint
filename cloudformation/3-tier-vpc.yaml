@@ -457,23 +457,6 @@ Resources:
         Ref: DataSubnet2
       NetworkAclId:
         Ref: DataNacl
-  DataRDSSubnetGroup:
-    Type: AWS::RDS::DBSubnetGroup
-    Properties:
-      DBSubnetGroupDescription: RDS subnet group for Data subnets
-      SubnetIds:
-      - Ref: DataSubnet1
-      - Ref: DataSubnet2
-      Tags:
-      - Key: Name
-        Value: DataSubnetGroup
-  DataElasticacheSubnetGroup:
-    Type: AWS::ElastiCache::SubnetGroup
-    Properties:
-      Description: Elasticache subnet group for Data subnets
-      SubnetIds:
-      - Ref: DataSubnet1
-      - Ref: DataSubnet2
 Outputs:
   Vpc:
     Value:
