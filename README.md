@@ -13,7 +13,7 @@ Create manifest.yaml file to map each SCP to respective OUs -- Sean
 
 **Done** Top-Level SCPs -- Sean
 
-Business Unit SCP -- Unassigned
+Business Unit SCP (Region enforcement) -- Unassigned
 
 **DONE** -- Prevent Creation of IGW -- Josh
 
