@@ -11,7 +11,7 @@ Create manifest.yaml file to map each SCP to respective OUs -- Sean
   
 **SCPs**
 
-**Done** Top-Level SCPs -- Sean
+**DONE** Top-Level SCPs -- Sean
 
 **DONE** -- Business Unit SCP (Region enforcement) -- Unassigned
 
