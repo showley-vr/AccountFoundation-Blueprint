@@ -3,7 +3,13 @@ This is the blueprint for a basic implementation of Vertical Relevance's Account
 
 **------------------------------TODO------------------------------**
 
-**GENERAL**
+**DOCUMENTATION**
+
+README.md with operating instructions -- Sean
+
+Update Playbook with technical details -- Sean
+
+**GENERAL CODE**
 
 Create manifest.yaml file to map each SCP to respective OUs -- Sean
 
@@ -19,8 +25,10 @@ Create manifest.yaml file to map each SCP to respective OUs -- Sean
 
 **CFN Templates**
 
-Baseline Security Tooling CFN Template -- Sean
+**DONE** -- Baseline Security Tooling CFN Template -- Sean
 
 **DONE** -- Delete Default Networking Components CFN Template -- Sean
 
 **DONE** -- 3-Tier VPC -- Josh
+
+Basic IAM Role Creation CFN Template -- Sean
