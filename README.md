@@ -13,7 +13,7 @@ Update Playbook with technical details -- Sean
 
 Create manifest.yaml file to map each SCP to respective OUs -- Sean
 
-**DONE** -- CDK Script Deployment Project Structure -- Sean
+~~**DONE** -- CDK Script Deployment Project Structure -- Sean~~
   
 **SCPs**
 
