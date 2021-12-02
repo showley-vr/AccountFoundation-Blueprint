@@ -9,6 +9,8 @@ README.md with operating instructions -- Sean
 
 Update Playbook with technical details -- Sean
 
+Reference other foundations in blueprint (also decide on vision of holistic foundation, how they interact) -- Sean + Leadership
+
 **GENERAL CODE**
 
 Create manifest.yaml file to map each SCP to respective OUs -- Sean
