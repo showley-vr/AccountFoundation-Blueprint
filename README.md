@@ -25,10 +25,10 @@ Create manifest.yaml file to map each SCP to respective OUs -- Sean
 
 **CFN Templates**
 
+Basic IAM Role Creation CFN Template -- Sean
+
 ~~Baseline Security Tooling CFN Template -- Sean~~
 
-~~Delete Default Networking Components CFN Template -- Seanv
+~~Delete Default Networking Components CFN Template -- Sean~~
 
 ~~3-Tier VPC -- Josh~~
-
-Basic IAM Role Creation CFN Template -- Sean
