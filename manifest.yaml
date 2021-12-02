@@ -1,7 +1,81 @@
 ---
-#Default region for deploying Custom Control Tower: Code Pipeline, Step functions, Lambda, SSM parameters, and StackSets
-region: us-east-2
+region: us-east-2  # Control Tower Home Region
 version: 2021-03-15
 
-# Control Tower Custom Resources (Service Control Policies or CloudFormation)
-resources: []
+resources:
+  # Create SCPs for Account Level Protection.
+  - name: scp-account-level-protection
+    resource_file: s3://vr-control-tower-customization/scp-account-level-protection.json
+    deploy_method: scp
+    deployment_targets:
+      organizational_units:
+        - prod
+ 
+  # Create SCPs for Logging Service Level Protection.
+  - name: scp-logging-services-level-protection
+    resource_file: s3://vr-control-tower-customization/scp-logging-service-level-protection.json
+    deploy_method: scp
+    deployment_targets:
+      organizational_units:
+        - prod
+        - qa
+        - test
+        - dev
+
+# Deploy Config Conformance Pack for CIS Best Practices.
+  - name: deploy-config-cis-conformance-pack
+    # Custom template
+    resource_file: s3://vr-control-tower-customization/deploy-config-cis-conformance-pack.template
+    deploy_method: stack_set
+    deployment_targets:
+      organizational_units:
+        - prod
+    regions:
+      - us-east-2
+# Deploy custom control broker that is built off of OPA policies that are tailored to the client's compliance requirements.
+  - name: deploy-control-broker
+    # Custom template
+    resource_file: s3://vr-control-tower-customization/deploy-control-broker.template
+    deploy_method: stack_set
+    deployment_targets:
+      organizational_units:
+        - prod
+    regions:
+      - us-east-2
+
+# Deploy IAM Access Analyzer.
+  - name: deploy-iam-access-analyzer
+    # Custom template
+    resource_file: s3://vr-control-tower-customization/deploy-iam-access-analyzer.template
+    deploy_method: stack_set
+    deployment_targets:
+      organizational_units:
+        - prod
+        - qa
+        - test
+        - dev  
+    regions:
+      - us-east-2
+# Deploy GuardDuty.
+  - name: deploy-guardduty
+    # Custom template
+    resource_file: s3://vr-control-tower-customization/deploy-guardduty.template
+    deploy_method: stack_set
+    deployment_targets:
+      organizational_units:
+        - prod
+    regions:
+      - us-east-2
+# Deploy Macie along with custom data identifiers that alert on PII and PCI patterns for compliance purposes.
+  - name: deploy-macie
+    # Custom template
+    resource_file: s3://vr-control-tower-customization/deploy-macie.template
+    deploy_method: stack_set
+    deployment_targets:
+      organizational_units:
+        - prod
+        - qa
+        - test
+        - dev 
+    regions:
+      - us-east-2

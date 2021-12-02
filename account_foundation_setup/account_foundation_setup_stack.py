@@ -16,14 +16,21 @@ class SetupStack(cdk.Stack):
 
         # Deploy SCP policies.
         s3deploy.BucketDeployment(self, "DeployScpPolicies",
-            sources=[s3deploy.Source.asset("./scp")],
+            sources=[s3deploy.Source.asset("./scp_policies")],
             destination_bucket=control_tower_bucket,
-            destination_key_prefix="scp"
+            destination_key_prefix="scp-policies"
         )
 
         # Deploy CFN templates.
         s3deploy.BucketDeployment(self, "DeployCfnTemplates",
-            sources=[s3deploy.Source.asset("./stacksets")],
+            sources=[s3deploy.Source.asset("./cfn_templates")],
             destination_bucket=control_tower_bucket,
-            destination_key_prefix="stacksets"
+            destination_key_prefix="cfn-templates"
+        )
+
+        # Deploy supplementary templates.
+        s3deploy.BucketDeployment(self, "DeploySupplementaryFiles",
+            sources=[s3deploy.Source.asset("./supplementary_scripts")],
+            destination_bucket=control_tower_bucket,
+            destination_key_prefix="supplementary-files"
         )
