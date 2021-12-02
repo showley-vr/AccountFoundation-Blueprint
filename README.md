@@ -13,22 +13,22 @@ Update Playbook with technical details -- Sean
 
 Create manifest.yaml file to map each SCP to respective OUs -- Sean
 
-~~**DONE** -- CDK Script Deployment Project Structure -- Sean~~
+~~CDK Script Deployment Project Structure -- Sean
   
-**SCPs**
+~~**SCPs**
 
-**DONE** Top-Level SCPs -- Sean
+~~Top-Level SCPs -- Sean~
 
-**DONE** -- Business Unit SCP (Region enforcement) -- Unassigned
+~~Business Unit SCP (Region enforcement) -- Sean
 
-**DONE** -- Prevent Creation of IGW -- Josh
+~~Prevent Creation of IGW -- Josh
 
 **CFN Templates**
 
-**DONE** -- Baseline Security Tooling CFN Template -- Sean
+~~Baseline Security Tooling CFN Template -- Sean
 
-**DONE** -- Delete Default Networking Components CFN Template -- Sean
+~~Delete Default Networking Components CFN Template -- Sean
 
-**DONE** -- 3-Tier VPC -- Josh
+~~3-Tier VPC -- Josh
 
 Basic IAM Role Creation CFN Template -- Sean
