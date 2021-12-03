@@ -7,7 +7,7 @@ This is the blueprint for a basic implementation of Vertical Relevance's Account
 
 README.md with operating instructions -- Sean
 
-Update Playbook with technical details -- Sean
+~~Update Playbook with technical details -- Sean~~
 
 Reference other foundations in blueprint (also decide on vision of holistic foundation, how they interact) -- Sean + Leadership
 
