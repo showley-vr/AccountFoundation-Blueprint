@@ -3,79 +3,66 @@ region: us-east-2  # Control Tower Home Region
 version: 2021-03-15
 
 resources:
-  # Create SCPs for Account Level Protection.
-  - name: scp-account-level-protection
-    resource_file: s3://vr-control-tower-customization/scp-account-level-protection.json
+  # Create Critical Controls OU SCP.
+  - name: critical-controls-ou-scp
+    resource_file: s3://vr-account-foundation-bucket/scp-policies/critical-controls-scp.json
     deploy_method: scp
     deployment_targets:
       organizational_units:
-        - prod
+        - critical-controls-ou
  
-  # Create SCPs for Logging Service Level Protection.
-  - name: scp-logging-services-level-protection
-    resource_file: s3://vr-control-tower-customization/scp-logging-service-level-protection.json
+  # Create Business Unit OU SCP.
+  - name: business-unit-ou-scp
+    resource_file: s3://vr-account-foundation-bucket/scp-policies/business-unit-scp.json
     deploy_method: scp
     deployment_targets:
       organizational_units:
-        - prod
-        - qa
-        - test
-        - dev
+        - business-unit-ou
 
-# Deploy Config Conformance Pack for CIS Best Practices.
-  - name: deploy-config-cis-conformance-pack
-    # Custom template
-    resource_file: s3://vr-control-tower-customization/deploy-config-cis-conformance-pack.template
+  # Create Dev Workload OU SCP.
+  - name: dev-workload-ou-scp
+    resource_file: s3://vr-account-foundation-bucket/scp-policies/dev-workload.json
+    deploy_method: scp
+    deployment_targets:
+      organizational_units:
+        - business-unit-ou
+
+# Deploy baseline security controls to each account in the organization.
+  - name: baseline-security-controls-stackset
+    resource_file: s3://vr-account-foundation-bucket/cfn-templates/baseline_security_controls.template
     deploy_method: stack_set
     deployment_targets:
       organizational_units:
-        - prod
-    regions:
-      - us-east-2
-# Deploy custom control broker that is built off of OPA policies that are tailored to the client's compliance requirements.
-  - name: deploy-control-broker
-    # Custom template
-    resource_file: s3://vr-control-tower-customization/deploy-control-broker.template
-    deploy_method: stack_set
-    deployment_targets:
-      organizational_units:
-        - prod
+        - critical-controls-ou
     regions:
       - us-east-2
 
-# Deploy IAM Access Analyzer.
-  - name: deploy-iam-access-analyzer
-    # Custom template
-    resource_file: s3://vr-control-tower-customization/deploy-iam-access-analyzer.template
+# Deploy a baseline, three-tier VPC to each workload account.
+  - name: baseline-vpc-stackset
+    resource_file: s3://vr-account-foundation-bucket/cfn-templates/baseline_vpc.template
     deploy_method: stack_set
     deployment_targets:
       organizational_units:
-        - prod
-        - qa
-        - test
-        - dev  
+        - business-unit-1-ou
     regions:
       - us-east-2
-# Deploy GuardDuty.
-  - name: deploy-guardduty
-    # Custom template
-    resource_file: s3://vr-control-tower-customization/deploy-guardduty.template
+
+# Deploy baseline IAM users and roles to each workload account.
+  - name: baseline-iam-stackset
+    resource_file: 
     deploy_method: stack_set
     deployment_targets:
       organizational_units:
-        - prod
+        - business-unit-1-ou
     regions:
       - us-east-2
-# Deploy Macie along with custom data identifiers that alert on PII and PCI patterns for compliance purposes.
-  - name: deploy-macie
-    # Custom template
-    resource_file: s3://vr-control-tower-customization/deploy-macie.template
+
+# Deploy a lambda to remove default networking components (security groups, etc) from each workload account.
+  - name: remove-default-networking-components-stackset
+    resource_file: s3://vr-account-foundation-bucket/cfn-templates/baseline_default_networking_cleanup.template
     deploy_method: stack_set
     deployment_targets:
       organizational_units:
-        - prod
-        - qa
-        - test
-        - dev 
+        - business-unit-1-ou
     regions:
       - us-east-2
