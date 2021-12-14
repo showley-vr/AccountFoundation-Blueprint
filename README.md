@@ -15,8 +15,6 @@ This is the Account Foundation repository for Vertical Relevance's AWS Account F
 ### Follow the instructions below to setup CDK environment.
 Follow the setup steps below to properly configure the environment and first deployment of the infrastructure.
 
-Follow the setup steps below to properly configure the environment deploy the infrastructure.
-
 To manually create a virtualenv on MacOS and Linux:
 
 ```
