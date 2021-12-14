@@ -14,26 +14,46 @@ This is the Account Foundation repository for Vertical Relevance's AWS Account F
 ## Use CDK App Code to Deploy Scripts to Bucket
 ### Follow the instructions below to setup CDK environment.
 Follow the setup steps below to properly configure the environment and first deployment of the infrastructure.
+
+Follow the setup steps below to properly configure the environment deploy the infrastructure.
+
 To manually create a virtualenv on MacOS and Linux:
 
+```
 $ python3 -m venv .venv
-After the init process completes and the virtualenv is created, you can use the following step to activate your virtualenv.
+```
 
+After the init process completes and the virtualenv is created, you can use the following
+step to activate your virtualenv.
+
+```
 $ source .venv/bin/activate
+```
+
 If you are on a Windows platform, you would activate the virtualenv like this:
 
+```
 % .venv\Scripts\activate.bat
+```
+
 Once the virtualenv is activated, you can install the required dependencies.
 
+```
 $ pip install -r requirements.txt
+```
 
-Bootstrap the cdk app.
-
-cdk bootstrap
 At this point you can deploy the CDK app for this blueprint.
 
-$ cdk deploy
+```
+$ cdk deploy --app ControlsFoundationControlsPipeline
+```
 
-Now that you have depl
+Now that you have deployed the CDK app for this blueprint, an S3 bucket has been created and the CFN templates and SCP policies needed for the Account Vending Machine are put into it under their respective "scp-policies" and "cfn-templates" prefixes.
 
 ## Update manifest.yml
+  
+  1. Navigate to the CodeCommit repository that was created by the CloudFormation Template provided in the "Configure Control Tower" section above.
+  2. Replace the content in the manifest.yaml in CodeCommit with the contents of the manifest.yaml file provided in this repository.
+  3. Commit the changes.
+  4. Navigate to the CodePipeline created by the CloudFormation Template provided in the "Configure Control Tower" section above.
+  5. Click the "Release Changes" button.
